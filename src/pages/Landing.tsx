@@ -13,44 +13,44 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col justify-center items-center px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -60 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-white dark:bg-white text-black dark:text-black flex flex-col justify-center items-center px-6 relative overflow-hidden"
+    >
+      {/* Background Glow */}
+      <div className="absolute w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl -top-32 -left-32 animate-pulse"></div>
+      <div className="absolute w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-3xl -bottom-32 -right-32 animate-pulse"></div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="text-center max-w-5xl"
-      >
-        {/* Large Heading */}
-        <h1 className="text-[clamp(3rem,7vw,6rem)] font-semibold leading-tight tracking-tight mb-8">
-          {greeting} <br />
-          Mahipal
+      <div className="relative text-center max-w-4xl z-10">
+        <h1 className="text-[clamp(3rem,7vw,5rem)] font-bold leading-tight mb-6">
+          {greeting},{" "}
+          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            Mahipal
+          </span>
         </h1>
 
-        {/* Subtext */}
-        <p className="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-          Your admin account connects all your portfolio management tools.
-          Sign in to manage your dashboard securely.
+        <p className="text-gray-600 dark:text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+          Welcome to your admin dashboard. Manage projects, content,
+          and portfolio updates securely.
         </p>
 
-        {/* Microsoft Style Button */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => navigate("/login")}
-          className="
-            px-6 py-2.5
-            bg-blue-600
-            hover:bg-blue-700
-            text-white
-            text-sm
-            font-medium
-            rounded
-            transition
-          "
+          className="px-8 py-3 rounded-full font-semibold text-white 
+          bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+          shadow-lg shadow-purple-500/30
+          hover:shadow-xl hover:shadow-pink-500/40
+          transition-all duration-300"
         >
-          Sign in
-        </button>
-      </motion.div>
-    </div>
+          Sign In
+        </motion.button>
+      </div>
+    </motion.div>
   );
 };
 
